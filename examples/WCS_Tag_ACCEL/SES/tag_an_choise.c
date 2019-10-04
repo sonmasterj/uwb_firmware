@@ -9,7 +9,6 @@
  * the file.
  *
  */
-
 #include "sdk_config.h"
 #include "FreeRTOS.h"
 #include "task.h"
@@ -71,28 +70,27 @@ static dwt_config_t config = {
 /* beacon frame message for anchor 1*/
 #define ALL_MESS_ID 7
 #define ALL_MSG_SN_IDX 2
-#define BN_SESSION_ID 10
-#define BN_CLUSTER_NUM 11
-#define BN_CLUSTER_MAP 12
-#define BN_DATA_MAP 16
+#define BN_CLUSTER_NUM 10
+#define BN_CLUSTER_MAP 11
+#define BN_DATA_MAP 15
 #define BEACON_TYPE 0x10
 #define ALL_MSG_COMMON_LEN 7
 #define MESS_TYPE 9
-#define POLL_TAG_SLOT 7
 /* TDMA superframe*/
 #define TAG_SLOT 0
-static uint8_t beacon[]={0x41,0x88,0,0x11,0x22,0xFF,0xFF,0x00,0x02,BEACON_TYPE,0,1,0,0,0,0,0,0,0,0};
+static uint8_t beacon[]={0x41,0x88,0,0x11,0x22,0xFF,0xFF,0x00,0x02,BEACON_TYPE,0,1,0,0,0,0,0,0,0};
 /* twr frame */
 /* Frames used in the ranging process. See NOTE 2,3 below. */
-static uint8 rx_poll_msg[] = {0x41, 0x88, 0, 0x11, 0x22, 0xff, 0xff, TAG_SLOT,TAG_SLOT, 0xE0,0,0,0,0,0, 0};
+static uint8 rx_poll_msg[] = {0x41, 0x88, 0, 0x11, 0x22, 0xff, 0xff, 0,0, 0xE0,TAG_SLOT,0,0,0,0,0, 0};
 static uint8 tx_resp_msg[] = {0x41, 0x88, 0, 0x11, 0x22, 0xff, 0xff, 0x00, 0x01, 0xE1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 static uint8 iot_range_msg[]={0x41, 0x88, 0, 0x11, 0x22, 0xff, 0xff,TAG_SLOT,TAG_SLOT,0x63,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 uint8 counter_an=0;
 #define POLL_TYPE 0xE0
-#define AN_TWR0 10
-#define AN_TWR1 11
-#define AN_TWR2 12
-#define AN_TWR3 13
+#define TAG_ADDR 10
+#define AN_TWR0 11
+#define AN_TWR1 12
+#define AN_TWR2 13
+#define AN_TWR3 14
 //iot msg
 #define RESP_POLL 0xE1
 #define IOT_RANGE 0x63
@@ -105,8 +103,8 @@ uint8 counter_an=0;
 #define AN3_ADDR 20
 #define AN4_ADDR 21
 #define ANCHOR_NUM 4
-#define RESP_MSG_POLL_RX_TS_IDX 10
-#define RESP_MSG_RESP_TX_TS_IDX 14
+#define RESP_MSG_POLL_RX_TS_IDX 11
+#define RESP_MSG_RESP_TX_TS_IDX 15
 #define RESP_MSG_TS_LEN 4	
 #define REST_MSG_DES_ADD 5
 
@@ -166,6 +164,7 @@ static uint8 twr_succ=0;
 #define DWT_PERIOD 3//dwt active
 #define DWT_PERID_MODE_ACCEL 60//10s
 #define ACCEL_DETECT_INACTIVE_PERIOD 10 //detect tag inactive in 10s
+uint8_t tag_add[2];
 void init_phase();
 static void vInterruptInit ();
 static void vInterruptHandler();
@@ -256,6 +255,13 @@ void dw1000_init()
   dwt_settxantennadelay(TX_ANT_DLY);
   dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
   dwt_configuresleep(DWT_PRESRV_SLEEP | DWT_CONFIG, DWT_WAKE_CS | DWT_SLP_EN);
+  uint32_t iotID = dwt_getlotid();
+  tag_add[0]=iotID & 0xFF;
+  tag_add[1]=(iotID>>8) & 0xFF;
+  rx_poll_msg[7]=tag_add[0];
+  rx_poll_msg[8]=tag_add[1];
+  iot_range_msg[7]=tag_add[0];
+  iot_range_msg[8]=tag_add[1];
 }
 int main(void)
 {
@@ -313,7 +319,7 @@ init:    init_phase();
        }
        /* Check that the frame is a poll sent by "SS TWR initiator" example*/
        rx_buffer[ALL_MSG_SN_IDX] = 0;
-       if(rx_buffer[MESS_TYPE]==BEACON_TYPE && rx_buffer[3]==0x11 && rx_buffer[8]==anchor_sync)
+       if(rx_buffer[MESS_TYPE]==BEACON_TYPE && rx_buffer[3]==0x11 && rx_buffer[BN_CLUSTER_NUM]==anchor_sync)
        {
           tick=0; 
           counter_an=0;
@@ -326,7 +332,7 @@ init:    init_phase();
          int32 rtd_init, rtd_resp;
          float clockOffsetRatio ;
          counter_an++;
-         anchor_addr[counter_an-1]=rx_buffer[7];
+         anchor_addr[counter_an-1]=rx_buffer[10];
         /* Retrieve poll transmission and response reception timestamps. See NOTE 5 below. */
         
         resp_rx_ts=dwt_readrxtimestamplo32();
@@ -354,8 +360,6 @@ init:    init_phase();
           {
             dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
             iot_range_msg[ALL_MSG_SN_IDX] = frame_seq_nb;
-            iot_range_msg[7]=TAG_SLOT;
-            iot_range_msg[8]=TAG_SLOT;
             resp_msg_set_ts(&iot_range_msg[AN1_RANGE], distance[0],2);
             resp_msg_set_ts(&iot_range_msg[AN2_RANGE], distance[1],2);
             resp_msg_set_ts(&iot_range_msg[AN3_RANGE], distance[2],2);
@@ -432,7 +436,7 @@ listen:   while(tick<=2000)
        if(rx_buffer[MESS_TYPE]==BEACON_TYPE && rx_buffer[3]==0x11)
        {
          cnt_anchor++;
-         anchor_list[cnt_anchor-1]=rx_buffer[8];
+         anchor_list[cnt_anchor-1]=rx_buffer[BN_CLUSTER_NUM];
         // printf("%d \n\r",anchor_list[cnt_anchor-1]);
        }
      }

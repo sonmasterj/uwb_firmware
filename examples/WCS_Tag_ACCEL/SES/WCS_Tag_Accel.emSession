@@ -23,9 +23,9 @@
  <Project>
   <ProjectSessionItem path="WCS_Tag_Accel"/>
   <ProjectSessionItem path="WCS_Tag_Accel;WCS_Tag_Accel"/>
-  <ProjectSessionItem path="WCS_Tag_Accel;WCS_Tag_Accel;TWI_ACCEL"/>
-  <ProjectSessionItem path="WCS_Tag_Accel;WCS_Tag_Accel;LIS2DH12"/>
   <ProjectSessionItem path="WCS_Tag_Accel;WCS_Tag_Accel;Application"/>
+  <ProjectSessionItem path="WCS_Tag_Accel;WCS_Tag_Accel;LIS2DH12"/>
+  <ProjectSessionItem path="WCS_Tag_Accel;WCS_Tag_Accel;TWI_ACCEL"/>
  </Project>
  <Register1>
   <RegisterWindow visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp;CPU/internal" binaryNodes="" asciiNodes="" openNodes="CPU - Current Context" name="WCS_Tag_Accel" decimalNodes="" octalNodes="" unsignedNodes=""/>
@@ -69,7 +69,7 @@
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="1076" useTextEdit="1" useBinaryEdit="0" left="0" path="C:/Users/Admin/AppData/Local/SEGGER/SEGGER Embedded Studio/v3/packages/nRF/CMSIS/Device/Include/nrf52.h" selected="0" top="1055" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="11124" useTextEdit="1" useBinaryEdit="0" left="0" path="C:/Users/Admin/AppData/Local/SEGGER/SEGGER Embedded Studio/v3/packages/nRF/CMSIS/Device/Include/nrf52_bitfields.h" selected="0" top="11112" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="140" useTextEdit="1" useBinaryEdit="0" left="0" path="accel.c" selected="0" top="133" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="36" y="376" useTextEdit="1" useBinaryEdit="0" left="0" path="tag_an_choise.c" selected="1" top="257" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="34" y="257" useTextEdit="1" useBinaryEdit="0" left="0" path="tag_an_choise.c" selected="1" top="254" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="WCS_Tag_Accel" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="nrf52832_xxaa" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="E:/WSC_FTSP_ver_onemess/WSC_FTSP/WCS_v2_systick_TDMA_demo_20_09/WCS_v2_systick_TDMA/examples/WCS_Tag_ACCEL/SES" debugSearchPath="" autoConnectCapabilities="3711"/>
+ <ARMCrossStudioWindow activeProject="WCS_Tag_Accel" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="nrf52832_xxaa" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="E:/WSC_FTSP_ver_onemess/WSC_FTSP/WCS_v2_systick_TDMA_demo_20_09/WCS_v2_systick_TDMA/examples/WCS_Tag_ACCEL/SES" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>

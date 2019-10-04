@@ -166,26 +166,26 @@ typedef struct
     bool                        whitelist_temporarily_disabled;           /**< Flag to keep track of temporary disabling of the whitelist. */
     bool                        whitelist_reply_expected;
 
-#if (NRF_SD_BLE_API_VERSION <= 2)
-    // For SoftDevices v 2.x, this module caches a whitelist which is retrieved from the
-    // application using an event, and which is passed as a parameter when calling
-    // sd_ble_gap_adv_start().
-    ble_gap_addr_t * p_whitelist_addrs[BLE_GAP_WHITELIST_ADDR_MAX_COUNT];
-    ble_gap_irk_t  * p_whitelist_irks[BLE_GAP_WHITELIST_IRK_MAX_COUNT];
-    ble_gap_addr_t   whitelist_addrs[BLE_GAP_WHITELIST_ADDR_MAX_COUNT];
-    ble_gap_irk_t    whitelist_irks[BLE_GAP_WHITELIST_IRK_MAX_COUNT];
-
-    ble_gap_whitelist_t m_whitelist =
-    {
-        .pp_addrs = p_whitelist_addrs,
-        .pp_irks  = p_whitelist_irks
-    };
-#else
+//#if (NRF_SD_BLE_API_VERSION <= 2)
+//    // For SoftDevices v 2.x, this module caches a whitelist which is retrieved from the
+//    // application using an event, and which is passed as a parameter when calling
+//    // sd_ble_gap_adv_start().
+//    ble_gap_addr_t * p_whitelist_addrs[BLE_GAP_WHITELIST_ADDR_MAX_COUNT];
+//    ble_gap_irk_t  * p_whitelist_irks[BLE_GAP_WHITELIST_IRK_MAX_COUNT];
+//    ble_gap_addr_t   whitelist_addrs[BLE_GAP_WHITELIST_ADDR_MAX_COUNT];
+//    ble_gap_irk_t    whitelist_irks[BLE_GAP_WHITELIST_IRK_MAX_COUNT];
+//
+//    ble_gap_whitelist_t m_whitelist =
+//    {
+//        .pp_addrs = p_whitelist_addrs,
+//        .pp_irks  = p_whitelist_irks
+//    };
+//#else
     // For SoftDevices v 3.x, this module does not need to cache a whitelist, but it needs to
     // be aware of whether or not a whitelist has been set (e.g. using the Peer Manager)
     // in order to start advertising with the proper advertising params (filter policy).
     bool whitelist_in_use;
-#endif
+//#endif
 } ble_advertising_t;
 
 typedef struct

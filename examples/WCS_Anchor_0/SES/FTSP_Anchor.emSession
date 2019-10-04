@@ -25,7 +25,8 @@
   <ProjectSessionItem path="FTSP_Anchor"/>
   <ProjectSessionItem path="FTSP_Anchor;FTSP_Anchor"/>
   <ProjectSessionItem path="FTSP_Anchor;FTSP_Anchor;Application"/>
-  <ProjectSessionItem path="FTSP_Anchor;FTSP_Anchor;Decadriver"/>
+  <ProjectSessionItem path="FTSP_Anchor;FTSP_Anchor;Board Definition"/>
+  <ProjectSessionItem path="FTSP_Anchor;FTSP_Anchor;nRF_Libraries"/>
  </Project>
  <Register1>
   <RegisterWindow visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp" binaryNodes="" asciiNodes="" openNodes="CPU - Current Context" name="FTSP_Anchor" decimalNodes="" octalNodes="" unsignedNodes=""/>
@@ -63,8 +64,10 @@
  <Files>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="393" useTextEdit="1" useBinaryEdit="0" left="0" path="anchor_slot_1.c" selected="0" top="385" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="2546" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../deca_driver/deca_device.c" selected="0" top="2530" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="20" y="297" useTextEdit="1" useBinaryEdit="0" left="0" path="anchor_auto_choose.c" selected="1" top="285" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="317" useTextEdit="1" useBinaryEdit="0" left="0" path="anchor_auto_choose.c" selected="1" top="218" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="262" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../nRF5_SDK_14.2.0/components/drivers_nrf/hal/nrf_spi.h" selected="0" top="252" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="3894" useTextEdit="1" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="3887" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../nRF5_SDK_14.2.0/components/libraries/fstorage/nrf_fstorage_nvmc.c" selected="0" top="39" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="FTSP_Anchor" fileDialogDefaultFilter="*.asm;*.s;*.inc" autoConnectTarget="J-Link" buildConfiguration="nrf52832_xxaa" sessionSettings="" debugSearchFileMap="E:/WSC_FTSP_ver_onemess/WSC_FTSP/WCS_v2_systick_TDMA/examples/WCS_Anchor/SES/RTE/thumb_crt0.s&#xa;" fileDialogInitialDirectory="E:/WSC_FTSP_ver_onemess/WSC_FTSP/WCS_v2_systick_TDMA/examples/WCS_Anchor_0/SES" debugSearchPath="" autoConnectCapabilities="3711"/>
+ <ARMCrossStudioWindow activeProject="FTSP_Anchor" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="nrf52832_xxaa" sessionSettings="" debugSearchFileMap="E:/WSC_FTSP_ver_onemess/WSC_FTSP/WCS_v2_systick_TDMA/examples/WCS_Anchor/SES/RTE/thumb_crt0.s&#xa;" fileDialogInitialDirectory="E:/WSC_FTSP_ver_onemess/WSC_FTSP/WCS_v2_systick_TDMA_demo_20_09/WCS_v2_systick_TDMA/nRF5_SDK_14.2.0/components/drivers_nrf/hal" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>
